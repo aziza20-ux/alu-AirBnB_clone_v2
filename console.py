@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
                 except value:
                     return 
             parameter[key] = cleared_value
-            new_obj = self.classes[class_name]()
+        new_obj = self.classes[class_name]()
         for k, v in parameter.items():
             setattr(new_obj, k, v)
         print(new_obj)
