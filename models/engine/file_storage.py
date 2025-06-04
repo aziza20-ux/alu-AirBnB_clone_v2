@@ -65,5 +65,5 @@ class FileStorage():
                             print(
                                 f"objectwith {ke} classattributedon'texist")
 
-            except FileNotFoundError:
+            except (FileNotFoundError, json.JSONDecodeError):
                 return
