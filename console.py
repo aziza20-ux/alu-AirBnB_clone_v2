@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
         for k, v in parameter.items():
             setattr(new_obj, k, v)
         print(new_obj)
-        new_obj.storage.save()
+        storage.save()
 
     def do_show(self, arg):
         args = arg.split()
