@@ -112,6 +112,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         arg = arg.split()
+        new_obj = self.classes[class_name]()
         parameter = {}
         if not arg:
             print("please provide class and object attribute")
@@ -144,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                 except value:
                     return 
             parameter[key] = cleared_value
-        new_obj = self.classes[class_name]()
+        
         for k, v in parameter.items():
             setattr(new_obj, k, v)
         return new_obj
