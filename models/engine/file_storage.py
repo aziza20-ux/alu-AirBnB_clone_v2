@@ -27,18 +27,17 @@ class FileStorage():
     __objects = {}
 
     """displaying all objects"""
+
     def all(self, cls=None):
         """displaying all objects"""
-        class_objects ={}
+        class_objects = {}
         if cls is None:
-             return self.__objects
+            return self.__objects
         for k, v in self.__objects.items():
-             if k.split(".")[0] == cls:
-                  class_objects[k] = v
+            if k.split(".")[0] == cls:
+                class_objects[k] = v
         return class_objects
 
-
-    
     def new(self, obj):
 
         obj_key = f"{obj.__class__.__name__}.{obj.id}"
@@ -73,23 +72,18 @@ class FileStorage():
                         else:
                             print(
                                 f"objectwith {ke} classattributedon'texist")
-    
 
             except (FileNotFoundError, json.JSONDecodeError):
-                 return
+                return
             """it will delete an obj `delete` using this method
             and it remove document permanetly"""
+
     def delete(self, obj=None):
-            """it will delete an obj `delete` using this method
-            and it remove document permanetly"""
-                
-                if obj == None:
-                     return
-                key = f"{obj.__class__.__name__}.{obj.id}"
-                if key in self.__objects.keys():
-                     del self.__objects[key]
+        """it will delete an obj `delete` using this method
+        and it remove document permanetly"""
 
-                     
-
-                
-                
+        if obj is None:
+            return
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        if key in self.__objects.keys():
+            del self.__objects[key]
