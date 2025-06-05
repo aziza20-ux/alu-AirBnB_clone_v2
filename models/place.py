@@ -14,5 +14,6 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_id = []
+
     def __init__(self, *args, **kwargvs):
         super().__init__(*args, **kwargvs)

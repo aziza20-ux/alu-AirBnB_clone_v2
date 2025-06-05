@@ -860,7 +860,9 @@ class TestHBNBCommand_update(unittest.TestCase):
         try:
             os.rename("file.json", "tmp")
         except IOError:
-??? from here until ???END lines may have been inserted/deleted
+
+
+??? from here until ???END lines may have been inserted / deleted
             pass
         FileStorage.__objects = {}
 
