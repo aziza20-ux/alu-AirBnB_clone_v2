@@ -77,6 +77,7 @@ class FileStorage():
 
             except (FileNotFoundError, json.JSONDecodeError):
                  return
+            """it will delete an obj `delete` using this method"""
     def delete(self, obj=None):
                 
                 if obj == None:
