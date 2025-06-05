@@ -26,6 +26,7 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
+    """displaying all objects"""
     def all(self, cls=None):
         """displaying all objects"""
         class_objects ={}
