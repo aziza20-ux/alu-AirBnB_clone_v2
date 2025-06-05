@@ -26,10 +26,18 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         """displaying all objects"""
-        return self.__objects
+        class_objects ={}
+        if cls is None:
+             return self.__objects
+        for k, v in self.__objects.items():
+             if k.split(".")[0] == cls:
+                  class_objects[k] = v
+        return class_objects
 
+
+    
     def new(self, obj):
 
         obj_key = f"{obj.__class__.__name__}.{obj.id}"
@@ -64,6 +72,19 @@ class FileStorage():
                         else:
                             print(
                                 f"objectwith {ke} classattributedon'texist")
+    
 
             except (FileNotFoundError, json.JSONDecodeError):
-                return
+                 return
+    def delete(self, obj=None):
+                
+                if obj == None:
+                     return
+                key = f"{obj.__class__.__name__}.{obj.id}"
+                if key in self.__objects.keys():
+                     del self.__objects[key]
+
+                     
+
+                
+                
