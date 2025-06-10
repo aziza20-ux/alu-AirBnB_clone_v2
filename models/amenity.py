@@ -1,9 +1,16 @@
-from models.base_model import BaseModel
+from models.base_model import BaseModel,Base
+from sqlalchemy import column
+from sqlalchemy import string
+from sqlalchemy import table
+from sqlalchemy import relationship
 
 
-class Amenity(BaseModel):
+class Amenity(BaseModel,Base):
+    __tablename__ ="amenities"
 
-    name = ""
 
-    def __init__(self, *args, **kwargvs):
-        super().__init__(*args, **kwargvs)
+    name = column(string(128) nullable=False)
+    place_amenities = relationship("Place", secondary="place_amenity",
+                                viewonly=False)
+
+
