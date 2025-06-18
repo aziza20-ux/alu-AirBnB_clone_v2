@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
 
                         return self.do_update(
                             f'{class_name} {obj_id} {attr_name} "{attr_value}"'
-                            )
+                        )
 
             except Exception as e:
                 print("** unkown classname or something went wrong**")
@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             if "=" not in param:
                 print("invalid key-pair parameter")
                 return
-            key, value = param.split("=",1)
+            key, value = param.split("=", 1)
             if value.startswith('"') and value.endswith('"'):
                 value = value.replace('\\"', '"')
                 value = value.replace("_", " ")
@@ -143,12 +143,15 @@ class HBNBCommand(cmd.Cmd):
                     value = int(value)
                     cleared_value = value
                 except value:
-                    return 
+                    return
             parameter[key] = cleared_value
-        
+
+        new_obj = self.classes[class_name]()
         for k, v in parameter.items():
             setattr(new_obj, k, v)
-        return new_obj
+        print(new_obj)
+        storage.new(new_obj)
+        storage.save()
 
     def do_show(self, arg):
         args = arg.split()

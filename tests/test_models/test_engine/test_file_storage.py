@@ -49,7 +49,6 @@ class testpath(unittest.TestCase):
 
         self.assertIn(key, results)
 
-
     def tearDown(self):
         storage._FileStorage__objects.clear()
         storage.save()
