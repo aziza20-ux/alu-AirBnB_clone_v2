@@ -1,10 +1,11 @@
-from models.base_model import BaseModel,Base
+from models.base_model import BaseModel, Base
 from sqlalchemy import column
 from sqlalchemy import string
 from sqlalchemy import table
 from sqlalchemy.orm import relationship
 
-class User(BaseModel,Base):
+
+class User(BaseModel, Base):
     __tablename__ = "users"
 
     email = column(string(128) nullable=False)
@@ -21,5 +22,3 @@ class User(BaseModel,Base):
         backref="user"
         cascading="all,delete_orphan"
     )
-
-
