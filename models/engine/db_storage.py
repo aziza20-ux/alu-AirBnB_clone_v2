@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import column,string,table,text
+from sqlalchemy import column, string, table, text
 from sqlalchemy import sessionmaker, scoped_session
 from dotenv import load_dotenv
 import os
@@ -13,7 +13,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-from models.base_model import Base,BaseModel
+from models.base_model import Base, BaseModel
 classes = {
     "BaseModel": BaseModel,
     "User": User,
@@ -24,9 +24,12 @@ classes = {
     "Amenity": Amenity
 }
 load_dotenv(".env")
-class  DBStorage():
+
+
+class DBStorage():
     __engine = None
     __session = None
+
     def __init__(self):
         user = os.getenv("HBNB_MYSQL_USER")
         host = os.getenv("HBNB_MYSQL_HOST")
@@ -38,12 +41,12 @@ class  DBStorage():
 
         if env == "test":
             Base.metadata.drop_all(self.__engine)
-        
+
     def all(self, cls=None):
         dict_re = {}
         if cls:
             results = self.__session.query(cls).all()
-        
+
         else:
             results = []
             for class_str, class_obj in classes.items():
@@ -54,45 +57,21 @@ class  DBStorage():
             key = f"{obj.__class__.__name__}.{obj.id}"
             dict_re[key] = obj
         return dict_re
-    
+
     def new(self, obj):
         self.__session.add(obj)
+
     def delete(self, obj=None):
-        if obj != None:
+        if obj is not None:
             self.__session.delete(obj)
         else:
             return
+
     def save(self):
         self.__session.commit()
+
     def reload(self):
         Base.metadata.create_all(self.__engine)
         session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session= scoped_session(session)
+        Session = scoped_session(session)
         self.__session = Session()
-
-        
-
-
-
-                
-
-
-
-
-
-            
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -11,6 +11,8 @@ from sqlalchemy import float
 
 
 Base = declarative_base()
+
+
 class BaseModel:
     id = column(string(60), nullable=False, primary_key=True)
     created_at = column(datetime, nullable=False, default=datetime.now())
@@ -33,7 +35,6 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            
 
     def __str__(self):
         """it will return the string represation of object"""
@@ -57,6 +58,7 @@ class BaseModel:
         obj_dict.pop("_sa_instance_state", None)
 
         return obj_dict
+
     def delete(self):
         models.storage.delete(self)
 
